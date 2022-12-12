@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+	
+	<script src="https://kit.fontawesome.com/6a82835f2f.js" crossorigin="anonymous"></script>
+	
+	
+	<link rel="stylesheet" href="main.css">
+
+    <title>wann420</title>
+	
+</head>
+<body>
+	
+	
+	
+	<div id="map" style="width: 100vw; height: 100vh;"></div>
+	
+	<div id="mySidebar" class="sidebar">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeInfo()">×</a>
+	hi
+	</div>
+	
+	<script>
+		
+		var map = L.map("map");
+		
+		
+		
+		var loadMap = function () {
+			var DORTMUND = [51.514244, 7.468429];
+			var tile_url = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+			var layer = L.tileLayer(tile_url, {
+				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+			});
+			map.addLayer(layer);
+			map.setView(DORTMUND, 16);
+			map.locate({setView: true}) /* This will center the map to user's location */
+		};
+
+		loadMap();
+
+		async function mapSpotsToMap() {
+			spotsData = await (await fetch('./spots.json')).json();
+			for (let spot of spotsData) {
+				let position = L.latLng([spot.y, spot.x]);
+				
+				var mapMarker = L.icon ({
+					iconUrl: "./imgs/"+spot.iconUrl,
+					iconSize: [42,62],
+					iconAnchor: [21,44]
+				})
+				
+				L.marker(position,{icon:mapMarker}).addTo(map)
+				.on('click', () => {
+					initInfo(spot.infoData);
+				})
+			}
+		}
+		
+		mapSpotsToMap()
+
+		
+
+		function initInfo(infoData) {
+		  document.getElementById("mySidebar").style.width = "100vw";
+		  
+		  //hier noch die infos aus infoData.name usw hinzu
+		  
+		}
+
+		function closeInfo() {
+		  document.getElementById("mySidebar").style.width = "0";
+		}
+		
+	</script>
+	
+	
+	
+	
+    <div id="infoBot" style="width: 100vw; height: 10vh;">
+		Filter:
+		<button class="button" id="thcFilter" style="background-color: #009900;">THC</button>
+		<button class="button" id="cbdFilter" style="background-color: #0FA;">CBD</button>
+		<button class="button" id="pharmaFilter" style="background-color: #B8EBA3;">Apotheke</button>
+		<br><br>
+		<i class="fas fa-code"></i> by Jan Müsli.  &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>
+	</div>
+</body>
+</html>

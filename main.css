@@ -1,0 +1,172 @@
+body {
+	margin: 0;
+	background-color: #000;
+	color: #fff;
+	font-family: Monospace;
+	font-size: 13px;
+	line-height: 24px;
+	overscroll-behavior: none;
+}
+
+.hide {
+	display: none;
+}
+
+#map {
+	height: 100%;
+	width: 100%;
+	z-index:-100;
+	position: fixed;
+}
+
+a {
+	color: #ff0;
+	text-decoration: none;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+    background-color: #333;
+	color: #FFFFFF
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #000;
+	min-width: 160px;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+	z-index: 1
+}
+
+.dropdown-content a {
+	float: none;
+	color: #FFF;
+	font-size: 16px;
+	padding: 12px 16px;
+	display: block;
+    background-color: #111;
+	color: #FFFFFF
+}
+
+.dropdown-content a:hover {
+	background-color: #333;
+	color: #FFFFFF
+}
+
+.dropdown:hover .dropdown-content {
+	display: block
+}
+
+a:hover {
+	color: #ff0022;
+	text-decoration: underline;
+}
+
+button {
+	border: none;
+	color: white;
+	padding: 10px;
+	text-align: center;
+	font-weight: bold;
+	color: #000;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#infoBot {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	padding: 10px;
+	border-radius: 15px 15px 0px 0px;
+	box-sizing: border-box;
+	text-align: center;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	background-color: rgba(55, 55, 55);
+	z-index: 1;
+}
+
+a,
+button,
+input,
+select {
+	pointer-events: auto;
+}
+
+.dg.ac {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	z-index: 2 !important;
+	/* TODO Solve this in HTML */
+}
+
+#notSupported {
+	width: 50%;
+	margin: auto;
+	background-color: #f00;
+	margin-top: 20px;
+	padding: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}

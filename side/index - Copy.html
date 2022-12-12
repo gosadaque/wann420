@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+	
+	<script src="https://kit.fontawesome.com/6a82835f2f.js" crossorigin="anonymous"></script>
+	
+	<script type="text/javascript" src="maps.json"></script>
+	
+	<link rel="stylesheet" href="main.css">
+
+    <title>wann420</title>
+	
+</head>
+<body>
+	
+	
+	
+	<div id="map" style="width: 100vw; height: 90vh;"></div>
+	<div id="mySidebar" class="sidebar">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+	hi
+	</div>
+	<script>
+		var mapLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png')
+	
+		var map = L.map("map", {
+			zoom: 7,
+			layers: [mapLayer]
+        });
+		
+		var baseMaps = {
+			"mapLayer": mapLayer //,
+			//"Old map": cbdShops,
+			//"Modern map": thcShops
+		};
+		
+		var loadMap = function () {
+			var DORTMUND = [51.514244, 7.468429];
+			var tile_url = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
+			var layer = L.tileLayer(tile_url, {
+				attribution: 'OSM'
+			});
+			map.addLayer(layer);
+			map.setView(DORTMUND, 19);
+			//map.locate({setView: true}) /* This will return map so you can do chaining */
+			//	.on('locationfound', function(e){
+			//		var marker = L.marker([e.latitude, e.longitude]).bindPopup('Your are here :)');
+			//		map.addLayer(marker);
+			//	})
+			//   .on('locationerror', function(e){
+			//		console.log(e);
+			//		alert("Location access denied.");
+			//	});
+			L.control.layers(baseMaps).addTo(map);
+		};
+
+		loadMap();
+
+		async function mapSpotsToMap() {
+			const spotsData = await (await fetch('./OldSharlayan.json')).json();
+			for (let spot of spotsData) {
+				let position = L.latLng([spot.y, spot.x]);
+				
+				var mapMarker = L.icon ({
+					iconUrl: spot.iconUrl,
+					iconSize: [42,62],
+					iconAnchor: [21,44]
+				})
+				
+				L.marker(position,{icon:mapMarker}).addTo(map)
+				.bindPopup(spot.locationName)
+				.on('click', () => {
+					openNav()
+					initInfo(spot.infoData);
+				})
+			}
+		}
+		
+		mapSpotsToMap()
+
+
+
+		function openNav() {
+		  document.getElementById("mySidebar").style.width = "100vw";
+		}
+
+		function closeNav() {
+		  document.getElementById("mySidebar").style.width = "0";
+		}
+		
+	</script>
+	
+	
+	
+	
+    <div id="infoBot" style="width: 100vw; height: 10vh;">
+		Mach hier so filter
+		<br>
+		<i class="fas fa-code"></i> by Jan Müsli. 
+	</div>
+</body>
+</html>

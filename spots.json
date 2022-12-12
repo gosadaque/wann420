@@ -1,0 +1,67 @@
+
+[
+    
+    {
+        "y": 51.513100,
+        "x": 7.453610,
+		"iconUrl": "cbd-marker.png",
+		"infoData":{
+			"name": "CBD Shop - Crystal BuDs",
+			"openhour": 0,
+			"closehour": 0
+		}
+		
+    },
+	{
+        "y": 52.374670,
+        "x": 4.888860,
+		
+		"iconUrl": "thc-marker.png",
+		"infoData":{
+			"name": "Grey Area",
+			"openhour": 0,
+			"closehour": 0
+		}
+		
+
+    },
+	{
+        "y": 51.365990,
+        "x": 6.167190,
+		
+		"iconUrl": "thc-marker.png",
+		"infoData":{
+			"name": "Coffeeshop Nobody’s Place",
+			"openhour": 0,
+			"closehour": 0
+		}
+		
+
+    },
+	{
+        "y": 51.373450,
+        "x": 6.172980,
+		
+		"iconUrl": "thc-marker.png",
+		"infoData":{
+			"name": "Klein maar fijn",
+			"openhour": 0,
+			"closehour": 0
+		}
+		
+
+    },
+	{
+        "y": 51.365200,
+        "x": 6.167880,
+		
+		"iconUrl": "thc-marker.png",
+		"infoData":{
+			"name": "Huzur 33",
+			"openhour": 0,
+			"closehour": 0
+		}
+		
+
+    }
+]
